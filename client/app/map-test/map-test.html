@@ -1,0 +1,106 @@
+
+
+<!--<div class="row">
+  <div class="col-md-12">
+    {{vm.title}}
+  </div>
+</div>
+
+
+<div class="col-md-12" style="height: 500px !important;">
+  <p>Click the button to lazy load the Esri JSAPI. This can be used when you want to defer its inclusion until necessary, which can be particularly helpful when developing Single Page Applications (SPAs). You can see the resources being pulled from dev tools, once you click the button.</p>
+  <button ng-click="vm.lazyload()" ng-disabled="vm.loaded">Load Esri JSAPI and MapView</button>
+  &lt;!&ndash; add the map view to page only once the Esri API has loaded &ndash;&gt;
+  <div ng-if="vm.loaded" style="height: 500px !important;">
+    <esri-map-view  map="vm.map" on-create="vm.onViewCreated"
+                   view-options="{
+                        zoom: 4,
+                         [-9177311.62541634, 4247151.2052222416]
+                    }">
+    </esri-map-view>
+  </div>
+  <esri-scene-view  map="vm.map" on-create="vm.onViewCreated"
+    view-options="{
+     center: [-9177311.62541634,4247151.2052222416],
+        zoom: 9
+    }">
+  </esri-scene-view>
+</div>-->
+
+
+<div style="height: 500px !important;" id="viewDiv"></div>
+
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">{{vm.title}}</h3>
+  </div>
+  <div class="modal-body">
+      <form class="clearfix" name="vm.form" novalidate>
+        <fieldset ng-disabled="vm.watchMode" ng-if="(vm.show && vm.watchMode) || !vm.watchMode">
+          <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.firstName.$valid && vm.submitted,
+                                            'has-error': vm.form.firstName.$invalid && vm.submitted }">
+            <label>First Name*</label>
+            <input type="text" name="firstName" class="form-control" ng-model="vm.user.firstName"
+                   PLACEHOLDER="John" required/>
+            <p class="help-block" ng-show="vm.form.firstName.$error.required && vm.submitted">
+              This field is required
+            </p>
+          </div>
+          <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.lastName.$valid && vm.submitted,
+                                            'has-error': vm.form.lastName.$invalid && vm.submitted }">
+            <label>Last Name*</label>
+            <input type="text" name="lastName" class="form-control" ng-model="vm.user.lastName"
+                   PLACEHOLDER="Doe" required/>
+            <p class="help-block" ng-show="vm.form.lastName.$error.required && vm.submitted">
+              This field is required
+            </p>
+          </div>
+          <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.email.$valid && vm.submitted,
+                                            'has-error': vm.form.email.$invalid && vm.submitted }">
+            <label>Email*</label>
+            <input type="email" name="email" class="form-control" ng-model="vm.user.email"
+                   PLACEHOLDER="JohnDoe@example.com" required/>
+            <p class="help-block" ng-show="vm.form.email.$error.required && vm.submitted">
+              This field is required
+            </p>
+          </div>
+          <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.number.$valid && vm.submitted,
+                                            'has-error': vm.form.number.$invalid && vm.submitted }">
+            <label>Number Contact*</label>
+            <input type="text" type="text" ui-br-phone-number name="number" class="form-control" ng-model="vm.user.number"
+                   PLACEHOLDER="+1 123332233" required/>
+            <p class="help-block" ng-show="vm.form.number.$error.required && vm.submitted">
+              This field is required
+            </p>
+          </div>
+          <div  class="form-group  col-sm-6" ng-class="{ 'has-success': vm.form.bloodGroup.$valid && vm.submitted,
+                                            'has-error': vm.form.bloodGroup.$invalid && vm.submitted }">
+            <label>Blood Group *</label>
+            <select class="form-control" name="bloodGroup" ng-model="vm.user.bloodGroup" required>
+              <option value="A+">A+</option>
+              <option value="B+">B+</option>
+              <option value="O+">O+</option>
+              <option value="AB+">AB+</option>
+              <option value="A-">A-</option>
+              <option value="B-">B-</option>
+              <option value="O-">O-</option>
+              <option value="AB-">AB-</option>
+            </select>
+            <p class="help-block" ng-show="vm.form.bloodGroup.$error.required && vm.submitted">
+             This field is required!
+            </p>
+          </div>
+          <div ng-if="vm.watchMode" class="form-group col-sm-12">
+            <label>Address</label>
+            <textarea cols="3" ng-disabled="true" type="text" class="form-control" ng-model="vm.user.address"/>
+          </div>
+
+        </fieldset>
+      </form>
+    <button ng-if="(!vm.show && vm.watchMode)" class="btn btn-success" type="button" ng-click="vm.setShow()">Show</button>
+  </div>
+  <div class="modal-footer">
+    <button ng-if="!vm.watchMode" ng-disabled="vm.loading" class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</script>

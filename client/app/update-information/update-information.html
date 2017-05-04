@@ -1,0 +1,64 @@
+<form class="clearfix" name="vm.form" novalidate>
+  <fieldset>
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.firstName.$valid && vm.submitted,
+                                            'has-error': vm.form.firstName.$invalid && vm.submitted }">
+      <label>First Name*</label>
+      <input type="text" name="firstName" class="form-control" ng-model="vm.user.firstName"
+             PLACEHOLDER="John" required/>
+      <p class="help-block" ng-show="vm.form.firstName.$error.required && vm.submitted">
+        This field is required
+      </p>
+    </div>
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.lastName.$valid && vm.submitted,
+                                            'has-error': vm.form.lastName.$invalid && vm.submitted }">
+      <label>Last Name*</label>
+      <input type="text" name="lastName" class="form-control" ng-model="vm.user.lastName"
+             PLACEHOLDER="Doe" required/>
+      <p class="help-block" ng-show="vm.form.lastName.$error.required && vm.submitted">
+        This field is required
+      </p>
+    </div>
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.email.$valid && vm.submitted,
+                                            'has-error': vm.form.email.$invalid && vm.submitted }">
+      <label>Email*</label>
+      <input type="email" name="email" class="form-control" ng-model="vm.user.email"
+             PLACEHOLDER="JohnDoe@example.com" required/>
+      <p class="help-block" ng-show="vm.form.email.$error.required && vm.submitted">
+        This field is required
+      </p>
+    </div>
+    <div class="form-group col-sm-6" ng-class="{ 'has-success': vm.form.number.$valid && vm.submitted,
+                                            'has-error': vm.form.number.$invalid && vm.submitted }">
+      <label>Number Contact*</label>
+      <input type="text" type="text" ui-br-phone-number name="number" class="form-control" ng-model="vm.user.number"
+             PLACEHOLDER="+1 123332233" required/>
+      <p class="help-block" ng-show="vm.form.number.$error.required && vm.submitted">
+        This field is required
+      </p>
+    </div>
+    <div  class="form-group  col-sm-6" ng-class="{ 'has-success': vm.form.bloodGroup.$valid && vm.submitted,
+                                            'has-error': vm.form.bloodGroup.$invalid && vm.submitted }">
+      <label>Blood Group *</label>
+      <select class="form-control" name="bloodGroup" ng-model="vm.user.bloodGroup" required>
+        <option value="A+">A+</option>
+        <option value="B+">B+</option>
+        <option value="O+">O+</option>
+        <option value="AB+">AB+</option>
+        <option value="A-">A-</option>
+        <option value="B-">B-</option>
+        <option value="O-">O-</option>
+        <option value="AB-">AB-</option>
+      </select>
+      <p class="help-block" ng-show="vm.form.bloodGroup.$error.required && vm.submitted">
+        This field is required!
+      </p>
+    </div>
+  </fieldset>
+  <div class="form-group pull-right">
+    <div class="col-md-12">
+      <input type="submit" ng-click="vm.update()" class="btn btn-primary" value="Save Changes">
+      <span></span>
+      <input type="button" ng-click="vm.delete()"  class="btn btn-danger" value="Delete">
+    </div>
+  </div>
+</form>
